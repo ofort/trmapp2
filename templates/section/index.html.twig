@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Section index{% endblock %}
+
+{% block body %}
+    <h1>Toutes les sections</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Version</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for section in sections %}
+            <tr>
+                <td>{{ section.id }}</td>
+                <td>{{ section.nom }}</td>
+                {% if section.version %}
+                    <td>{{ section.version.name }}</td>
+                {% endif %}
+                <td>{{ section.description }}</td>
+                <td>
+                    <a href="{{ path('app_section_show', {'id': section.id}) }}">voir</a>
+                    <a href="{{ path('app_section_edit', {'id': section.id}) }}">modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_section_new') }}">Ajouter une section</a>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Trm{% endblock %}
+
+{% block body %}
+    <h1>Create new Trm</h1>
+
+    {{ include('trm/_form.html.twig') }}
+
+    <a href="{{ path('app_trm_index') }}">back to list</a>
+{% endblock %}

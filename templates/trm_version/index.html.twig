@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TrmVersion index{% endblock %}
+
+{% block body %}
+    <h1>TrmVersion index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Trm</th>
+                <th>Nom</th>
+                <th>Memo</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for trm_version in trm_versions %}
+            <tr>
+                <td>{{ trm_version.id }}</td>
+                <td><a href="{{ path('app_trm_show', {'id': trm_version.trm.id}) }}">{{ trm_version.trm.name }}</a></td>
+                <td>{{ trm_version.name }}</td>
+                <td>{{ trm_version.memo }}</td>
+                <td>
+                    <a href="{{ path('app_trm_version_show', {'id': trm_version.id}) }}">show</a>
+                    <a href="{{ path('app_trm_version_edit', {'id': trm_version.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_trm_version_new') }}">Create new</a>
+{% endblock %}
